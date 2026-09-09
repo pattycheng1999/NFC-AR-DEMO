@@ -1,0 +1,41 @@
+<!--
+  這是 Session 2 要用的檔案。
+  這段程式碼直接來自 MindAR 官方文件的 Quick Start 範例，逐字未修改，保證可以動。
+  用法：全選這個檔案的內容 → 複製 → 貼到你在 VS Code 裡新增的 index.html 裡 → 存檔。
+
+  測試用的目標圖片（用另一支手機或螢幕打開這張圖，對準鏡頭）：
+  https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.png
+-->
+<html>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    </head>
+
+    <body>
+        <a-scene
+            mindar-image="imageTargetSrc: ./targets.mind"
+            color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights"
+            vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+            <a-assets>
+                <img id="card"
+                    src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.png" />
+                <a-asset-item id="avatarModel"
+                    src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/softmind/scene.gltf"></a-asset-item>
+            </a-assets>
+
+            <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+            <a-entity mindar-image-target="targetIndex: 0">
+                <a-plane src="#card" position="0 0 0" height="0.552" width="1"
+                    rotation="0 0 0"></a-plane>
+                <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.005 0.005 0.005"
+                    src="#avatarModel"
+                    animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
+            </a-entity>
+        </a-scene>
+    </body>
+
+</html>
